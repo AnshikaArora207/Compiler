@@ -1,3 +1,4 @@
+// import { RootState } from "@/Redux/store"
 import CodeEditor from "@/components/CodeEditor"
 import HelperHeader from "@/components/HelperHeader"
 import {
@@ -5,7 +6,9 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
+// import { useSelector } from "react-redux"
 const Compile = () => {
+  // const html = useSelector((state: RootState)=>state.compilerSlice.html)
   return (
     <ResizablePanelGroup
       direction="horizontal"
