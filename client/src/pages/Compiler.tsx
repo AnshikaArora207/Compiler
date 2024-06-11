@@ -1,6 +1,7 @@
 // import { RootState } from "@/Redux/store"
 import CodeEditor from "@/components/CodeEditor"
 import HelperHeader from "@/components/HelperHeader"
+import RenderCode from "@/components/RenderCode"
 import {
   ResizableHandle,
   ResizablePanel,
@@ -24,7 +25,7 @@ const Compile = () => {
       <ResizableHandle />
       <ResizablePanel defaultSize={50}>
         <div className="h-[calc(100dvh-60px)] min-w-[350px]">
-          <span className="font-semibold">Right Side</span>
+          <RenderCode/>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>

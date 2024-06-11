@@ -11,9 +11,91 @@ export interface CompilerSliceStateType{
 
 const initialState:CompilerSliceStateType={
     fullCode:{
-        html: "this is the html code",
-        css: "this is the css code",
-        javascript: "this is the js code",
+        html: `
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button id="addButton">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>        
+        `,
+        css: `
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin: 50px auto;
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+        `,
+        javascript: `
+document.getElementById("addButton").addEventListener("click", function() {
+    var taskInput = document.getElementById("taskInput");
+    var taskList = document.getElementById("taskList");
+
+    if (taskInput.value.trim() !== "") {
+        var taskText = taskInput.value.trim();
+        var listItem = document.createElement("li");
+        listItem.textContent = taskText;
+        taskList.appendChild(listItem);
+        taskInput.value = "";
+    }
+});
+
+        `,
     },
     currentLanguage: "html",
 }
