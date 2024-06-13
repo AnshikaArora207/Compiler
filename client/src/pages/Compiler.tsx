@@ -13,6 +13,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { toast } from "sonner"
 const Compile = () => {
   const {urlId} = useParams()
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const Compile = () => {
       })
       dispatch(updateFullCode(response.data.fullCode));
     }catch(error){
+      if(axios.isAxiosError(error)){
+        if(error?.response?.status === 500){
+          toast("Invalid URL, Default Code Loaded");
+        }
+      }
       handleError(error);
     }
   }
