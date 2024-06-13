@@ -1,6 +1,6 @@
-import React from 'react'
+import { useState } from 'react'
 import { Button } from './ui/button'
-import { Fullscreen, Save, Share2 } from 'lucide-react'
+import { Save, Share2 } from 'lucide-react'
 import {
     Select,
     SelectContent,
@@ -13,16 +13,23 @@ import { CompilerSliceStateType, updateCurrentLanguage } from '@/Redux/slices/co
 import { RootState } from '@/Redux/store'
 import { handleError } from '@/utils/handleError'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const HelperHeader = () => {
+  const [saveLoading, setSaveLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const fullCode = useSelector((state:RootState)=>state.compilerSlice.fullCode);
   const handleSave = async()=>{
+    setSaveLoading(true);
     try {
       const response = await axios.post("http://localhost:4000/compiler/save",{
         fullCode: fullCode
       })
+      navigate(`/compiler/${response.data.url}`,{replace:true});
     } catch (error) {
       handleError(error);
+    } finally{
+      setSaveLoading(false);
     }
   }
     const dispatch = useDispatch()
@@ -30,7 +37,7 @@ const HelperHeader = () => {
   return (
     <div className='_helper_header h-[50px] bg-black text-white p-2 flex justify-between items-center'>
         <div className='_btn_container flex gap-1'>
-            <Button onClick={handleSave} className='flex justify-center items-center gap-1' variant="success"><Save size={16} />Save</Button>
+            <Button onClick={handleSave} className='flex justify-center items-center gap-1' variant="success" disabled={saveLoading}><Save size={16} />{saveLoading? "Saving..." : "Save"}</Button>
             <Button className='flex justify-center items-center gap-1' variant="secondary"><Share2 size={16}/>Share</Button>
         </div>
         <div className='_tab_switcher flex justify-center items-center gap-1'>
