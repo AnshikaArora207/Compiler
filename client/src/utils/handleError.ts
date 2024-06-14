@@ -1,3 +1,3 @@
-export const handleError = (error)=>{
+export const handleError = (error:any)=>{
     console.log(error?.response);  
 }
