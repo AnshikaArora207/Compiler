@@ -1,15 +1,16 @@
 {
   "version": 2,
+  "name" : "compiler-backend",
   "build": [
     {
-      "src": "*.ts",
+      "src": "index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.ts"
     }
   ]
 }
