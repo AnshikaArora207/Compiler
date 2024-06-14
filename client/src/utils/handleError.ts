@@ -1,3 +1,7 @@
-export const handleError = (error:any)=>{
-    console.log(error?.response);  
+interface ErrorResponse {
+  response?: any;
 }
+
+export const handleError = (error: ErrorResponse) => {
+  console.log(error?.response);
+};
