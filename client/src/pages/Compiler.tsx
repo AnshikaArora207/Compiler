@@ -19,7 +19,7 @@ const Compile = () => {
   const dispatch = useDispatch();
   const loadCode = async()=>{
     try{
-      const response = await axios.post("http://localhost:4000/compiler/load",{
+      const response = await axios.post("https://compiler-backend-olive.vercel.app/compiler/load",{
         urlId : urlId
       })
       dispatch(updateFullCode(response.data.fullCode));
