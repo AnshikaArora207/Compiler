@@ -5,7 +5,12 @@ import { dbConnect } from "./src/lib/dbConnect";
 import { compilerRouter } from "./src/routes/compilerRouter";
 const app = express();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin : true,
+        credentials : true,
+    }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 config();
