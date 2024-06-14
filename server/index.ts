@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 config();
 app.use("/compiler",compilerRouter);
+app.get("/", (req, res) => {
+    return res.status(200).send("ok");
+});
 dbConnect();
 
 app.listen(4000,()=>{
